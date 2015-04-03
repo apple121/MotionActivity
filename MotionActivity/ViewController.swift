@@ -12,8 +12,13 @@ import CoreMotion
 class ViewController: UIViewController {
 
     var errorLabel = UILabel(frame: CGRectMake(0, 0, 100, 20))
-    var stepsLabel = UILabel(frame: CGRectMake(50, 50, 100, 40))
-    var resultLabel = UILabel(frame: CGRectMake(0, 30, 320, 20))
+    var todayLabel = UILabel(frame: CGRectMake(0, 30, 320, 20))
+    
+    var stepsLabel = UILabel(frame: CGRectMake(60, 70, 100, 40))
+    var distanceLabel = UILabel(frame: CGRectMake(60, 100, 200, 40))
+    var speedLabel = UILabel(frame: CGRectMake(60, 130, 200, 40))
+    var floorsAscendedLabel = UILabel(frame: CGRectMake(60, 160, 200, 40))
+    var floorsDescendedLabel = UILabel(frame: CGRectMake(60, 190, 200, 40))
     
     let now:NSDate = NSDate()
     let pedometer = CMPedometer()
@@ -29,11 +34,10 @@ class ViewController: UIViewController {
         dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP")
         dateFormatter.dateFormat = "yyyy年MM月dd日"
         
-        let ioj = 2
         // 日時表示
-        self.resultLabel.text = "\(dateFormatter.stringFromDate(now))の計測結果"
-        resultLabel.textAlignment = NSTextAlignment.Center
-        self.view.addSubview(self.resultLabel)
+        self.todayLabel.text = "\(dateFormatter.stringFromDate(now))の計測結果"
+        todayLabel.textAlignment = NSTextAlignment.Center
+        self.view.addSubview(self.todayLabel)
             }
     
     func startStepCounting() {
@@ -79,12 +83,15 @@ class ViewController: UIViewController {
                         let floorsDescended = data.floorsDescended
                         // 結果をラベルに出力
                         self.stepsLabel.text = "歩数 : \(steps)"
-                            + "\n\n距離 : \(lengthFormatter.stringFromMeters(distance))"
-                            + "\n\n速さ : \(lengthFormatter.stringFromMeters(speed)) / s"
-                            + "\n\n上った回数 : \(floorsAscended)"
-                            + "\n\n降りた回数 : \(floorsDescended)"
+                        self.distanceLabel.text = "距離 : \(lengthFormatter.stringFromMeters(distance))"
+                        self.speedLabel.text = "速さ : \(lengthFormatter.stringFromMeters(speed)) / s"
+                        self.floorsAscendedLabel.text = "上った回数 : \(floorsAscended)"
+                        self.floorsDescendedLabel.text = "降りた回数 : \(floorsDescended)"
                         self.view.addSubview(self.stepsLabel)
-                        
+                        self.view.addSubview(self.distanceLabel)
+                        self.view.addSubview(self.speedLabel)
+                        self.view.addSubview(self.floorsAscendedLabel)
+                        self.view.addSubview(self.floorsDescendedLabel)
                     }
                 })
             })

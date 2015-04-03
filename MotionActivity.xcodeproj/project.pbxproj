@@ -409,6 +409,7 @@
 				1F665D051ACBB4AD00E04E38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1F665D061ACBB4AD00E04E38 /* Build configuration list for PBXNativeTarget "MotionActivityTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +418,7 @@
 				1F665D081ACBB4AD00E04E38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
